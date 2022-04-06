@@ -1,13 +1,14 @@
 import json
 
-
 path = 'candidates.json'
+
+
 def load_candidates_from_json():
     """возвращает список всех кандидатов
     """
-    with open(path, 'r') as file:
+    with open(path, 'r', encoding='utf8') as file:
         data = json.load(file)
-        return data
+    return data
 
 
 def get_candidate(candidate_id):

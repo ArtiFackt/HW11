@@ -14,7 +14,22 @@ def page_index():
 @app.route('/candidate/<int:id>')
 def view_candidate(id):
     candidate = get_candidate(id)
-    return render_template('candidate.html', candidate=candidate)
+    if not candidate:
+        return 'Кандидат не найден!'
+    return render_template('single.html', candidate=candidate)
 
 
-app.run(debug=True)
+@app.route('/search/<candidate_name>')
+def name_candidate(candidate_name):
+    candidates = get_candidates_by_name(candidate_name)
+    candidates_count = len(candidates)
+    return render_template('search.html', candidates=candidates, candidates_count=candidates_count)
+
+
+@app.route('/skill/<skill_name>')
+def skill_name_candidate(skill_name):
+    candidates = get_candidates_by_skill(skill_name)
+    candidates_count = len(candidates)
+    return render_template('skill.html', candidates=candidates, candidates_count=candidates_count)
+
+app.run()

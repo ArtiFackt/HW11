@@ -1,5 +1,5 @@
 import json
-
+from pprint import pprint as pp
 path = 'candidates.json'
 
 
@@ -28,11 +28,9 @@ def get_candidates_by_name(candidate_name):
     name_lower = candidate_name.lower()
 
     for candidate in candidates:
-        name = candidate['name'].lower().split(', ')
-        if name_lower in name:
+        if name_lower in candidate['name'].lower():
             name_candidate.append(candidate)
     return name_candidate
-
 
 def get_candidates_by_skill(skill_name):
     '''возвращает кандидатов по навыку
